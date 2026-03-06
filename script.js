@@ -8,11 +8,11 @@
 const FEATURED_PRODUCTS = [
   {
     id: 101,
-    name: 'Cartera Manhatann',
+    name: 'Cartera Manhattan',
     price: 80000,
     originalPrice: null,
     image: 'cartera7.png',
-    alt: 'Cartera Manhatann artesanal premium',
+    alt: 'Cartera Manhattan artesanal premium',
     badge: 'Destacado',
     outOfStock: false,
     url: 'productos/cartera-manhattan.html'
@@ -90,11 +90,11 @@ const PRODUCTS = [
 },
 {
   id: 5,
-  name: 'Cartera Manhatann',
+  name: 'Cartera Manhattan',
   price: 80000,
   originalPrice: null,
   image: '/cartera7.png',
-  alt: 'Cartera Manhatann artesanal premium',
+  alt: 'Cartera Manhattan artesanal premium',
   badge: 'Destacado',
   outOfStock: false,
   url: 'productos/cartera-manhattan.html'
