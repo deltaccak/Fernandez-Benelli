@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ======================================================
+       INSTRUCCIONES PARA COPIAR Y PEGAR:
+       1. Cambiá Cartera Camel por el nombre real
+       2. Cambiá PRECIO por el precio (número sin puntos ni $)
+       3. Cambiá imagen1.jpg e imagen2.jpg por las imágenes reales
+       4. Completá la descripción y medidas del producto
+       5. Guardá el archivo (ej: cartera-manhatann.html)
+  ====================================================== -->
+
+  <title>Cartera Camel | FB Fernández Bellini</title>
+  <meta name="description" content="Cartera Camel — FB Fernández Bellini. Carteras artesanales de diseño exclusivo." />
+  <link rel="icon" type="image/png" href="../fblogo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ivory:       #faf8f5;
+      --ivory-dark:  #f0ece5;
+      --cream:       #e8e0d5;
+      --rose:        #c9a99a;
+      --rose-dark:   #b8887a;
+      --charcoal:    #2a2420;
+      --charcoal-md: #4a3f3a;
+      --warm-gray:   #9e8e87;
+      --white:       #ffffff;
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'Jost', sans-serif;
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm:   0 2px 12px rgba(42,36,32,0.07);
+      --shadow-md:   0 8px 32px rgba(42,36,32,0.12);
+      --shadow-lg:   0 20px 60px rgba(42,36,32,0.15);
+      --header-h:    72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--ff-body); background: var(--ivory); color: var(--charcoal); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--ff-body); }
+    h1,h2,h3,h4 { font-family: var(--ff-display); font-weight: 400; line-height: 1.15; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--ivory-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: rgba(250,248,245,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cream);
+      z-index: 100;
+      transition: box-shadow var(--transition);
+    }
+    .header.scrolled { box-shadow: var(--shadow-sm); }
+
+    .header-logo img { height: 44px; width: auto; object-fit: contain; transition: opacity var(--transition); }
+    .header-logo:hover img { opacity: 0.7; }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal-md);
+      transition: color var(--transition);
+      min-width: 80px;
+    }
+    .back-btn:hover { color: var(--rose-dark); }
+    .back-btn svg { transition: transform var(--transition); flex-shrink: 0; }
+    .back-btn:hover svg { transform: translateX(-3px); }
+
+    /* Cart button in header */
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 6px;
+      color: var(--charcoal);
+      transition: color var(--transition);
+      min-width: 80px;
+      justify-content: flex-end;
+    }
+    .cart-btn:hover { color: var(--rose-dark); }
+    .cart-count {
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--rose-dark);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 500;
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0);
+      transition: var(--transition);
+    }
+    .cart-count.visible { opacity: 1; transform: scale(1); }
+
+    /* ===== CART DRAWER ===== */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(42,36,32,0.4);
+      z-index: 149;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    .cart-overlay.open { opacity: 1; visibility: visible; }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      height: 100%;
+      width: min(420px, 100vw);
+      background: var(--ivory);
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-lg);
+    }
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--cream);
+    }
+    .cart-header h2 { font-family: var(--ff-display); font-size: 1.5rem; }
+    .cart-close {
+      font-size: 1.7rem;
+      color: var(--charcoal-md);
+      line-height: 1;
+      transition: color var(--transition);
+    }
+    .cart-close:hover { color: var(--rose-dark); }
+
+    .cart-items { flex: 1; overflow-y: auto; padding: 24px 32px; }
+    .cart-empty {
+      text-align: center;
+      color: var(--warm-gray);
+      padding-top: 40px;
+      font-style: italic;
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 14px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--cream);
+    }
+    .cart-item img { width: 72px; height: 90px; object-fit: cover; background: var(--cream); }
+    .cart-item-info { display: flex; flex-direction: column; gap: 4px; }
+    .cart-item-name { font-family: var(--ff-display); font-size: 1rem; color: var(--charcoal); }
+    .cart-item-price { font-size: 0.88rem; font-weight: 500; color: var(--charcoal-md); }
+    .cart-item-qty { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+
+    .qty-btn-cart {
+      width: 24px; height: 24px;
+      border: 1px solid var(--cream);
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .qty-btn-cart:hover { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
+    .qty-num-cart { font-size: 0.85rem; min-width: 16px; text-align: center; }
+
+    .cart-item-remove {
+      color: var(--warm-gray);
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: color var(--transition);
+      padding: 4px;
+    }
+    .cart-item-remove:hover { color: var(--rose-dark); }
+
+    .cart-footer { padding: 24px 32px 32px; border-top: 1px solid var(--cream); }
+    .cart-totals {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--charcoal-md);
+      margin-bottom: 20px;
+    }
+    .cart-totals span:last-child { font-weight: 500; font-size: 1rem; }
+
+    .btn-checkout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px;
+      background: #25D366;
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-checkout:hover { background: #1ebe5a; }
+
+    /* ===== PRODUCT PAGE ===== */
+    .product-page {
+      padding-top: calc(var(--header-h) + 48px);
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 40px;
+    }
+    .breadcrumb a { transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--rose-dark); }
+    .breadcrumb span { color: var(--charcoal); }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery { position: sticky; top: calc(var(--header-h) + 24px); }
+
+    .gallery-main {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+      aspect-ratio: 4/5;
+      cursor: zoom-in;
+    }
+    .gallery-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+      pointer-events: none;
+    }
+    .gallery-main.zoomed { cursor: zoom-out; }
+    .gallery-main.zoomed img { transform: scale(2); }
+
+    .zoom-hint {
+      position: absolute;
+      bottom: 14px; right: 14px;
+      background: rgba(42,36,32,0.55);
+      color: var(--white);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .gallery-main.zoomed .zoom-hint { opacity: 0; }
+
+    .gallery-thumbs { display: flex; gap: 10px; margin-top: 12px; }
+    .thumb {
+      width: 80px;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color var(--transition);
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .thumb.active { border-color: var(--charcoal); }
+    .thumb:hover { border-color: var(--rose); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    .gallery-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .gallery-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid var(--cream);
+      color: var(--charcoal);
+      background: var(--ivory);
+      transition: var(--transition);
+    }
+    .gallery-arrow:hover { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
+    .gallery-dots { display: flex; gap: 6px; }
+    .gallery-dot {
+      width: 24px; height: 2px;
+      background: var(--cream);
+      border-radius: 1px;
+      transition: var(--transition);
+    }
+    .gallery-dot.active { background: var(--charcoal); width: 36px; }
+
+    /* ===== PRODUCT INFO ===== */
+    .product-info { padding-top: 8px; }
+    .product-tag {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 12px;
+    }
+    .product-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .product-price {
+      font-size: 1.9rem;
+      font-weight: 400;
+      font-family: var(--ff-display);
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .product-price.has-sale { color: var(--rose-dark); }
+    .price-original {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      text-decoration: line-through;
+      text-decoration-color: var(--rose);
+      margin-left: 10px;
+      font-family: var(--ff-body);
+    }
+    .price-note {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      margin-bottom: 32px;
+    }
+    .divider { height: 1px; background: var(--cream); margin: 28px 0; }
+
+    /* Qty + Add to cart */
+    .qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .qty-control { display: flex; align-items: center; border: 1px solid var(--cream); }
+    .qty-btn-product {
+      width: 40px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      background: var(--ivory);
+      transition: var(--transition);
+    }
+    .qty-btn-product:hover { background: var(--cream); }
+    .qty-num-product {
+      width: 44px; height: 44px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 400;
+      border-left: 1px solid var(--cream);
+      border-right: 1px solid var(--cream);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-add-cart {
+      flex: 1; height: 44px;
+      background: var(--charcoal);
+      color: var(--ivory);
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--charcoal);
+      transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-add-cart:hover { background: var(--rose-dark); border-color: var(--rose-dark); }
+    .btn-add-cart.added { background: var(--rose-dark); border-color: var(--rose-dark); }
+
+    .btn-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; height: 44px;
+      background: transparent;
+      color: var(--charcoal);
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid var(--cream);
+      transition: var(--transition);
+    }
+    .btn-whatsapp:hover { border-color: #25D366; color: #25D366; }
+
+    .product-meta { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+    .meta-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.8rem; font-weight: 300;
+      color: var(--warm-gray); letter-spacing: 0.05em;
+    }
+    .meta-item svg { color: var(--rose); flex-shrink: 0; }
+
+    /* ===== DESCRIPTION ===== */
+    .description-section {
+      margin-top: 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 60px 80px;
+    }
+    .desc-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--cream);
+      margin-bottom: 40px;
+    }
+    .desc-tab {
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      padding: 14px 0;
+      margin-right: 40px;
+      border-bottom: 2px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .desc-tab.active { color: var(--charcoal); border-bottom-color: var(--charcoal); }
+    .desc-body { background: var(--ivory-dark); padding: 40px 48px; }
+    .desc-title {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+    .desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .desc-features { display: flex; flex-direction: column; gap: 10px; }
+    .desc-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--charcoal-md); line-height: 1.6;
+    }
+    .desc-feature::before { content: '—'; color: var(--rose); flex-shrink: 0; margin-top: 1px; }
+    .desc-measures {
+      background: var(--white);
+      padding: 28px 32px;
+      border-left: 3px solid var(--rose);
+    }
+    .desc-measures h4 {
+      font-family: var(--ff-body);
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rose-dark); margin-bottom: 16px;
+    }
+    .measure-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 0; border-bottom: 1px solid var(--cream); font-size: 0.88rem;
+    }
+    .measure-row:last-child { border-bottom: none; }
+    .measure-label { font-weight: 300; color: var(--warm-gray); letter-spacing: 0.05em; }
+    .measure-value { font-weight: 500; color: var(--charcoal); }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--charcoal); color: var(--ivory);
+      padding: 13px 28px; font-size: 0.82rem; font-weight: 300;
+      letter-spacing: 0.08em; z-index: 999;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+      opacity: 0; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .product-page { padding-left: 40px; padding-right: 40px; }
+      .description-section { padding-left: 40px; padding-right: 40px; }
+      .product-layout { gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      :root { --header-h: 60px; }
+      .product-page { padding-left: 20px; padding-right: 20px; padding-top: calc(var(--header-h) + 32px); }
+      .description-section { padding-left: 20px; padding-right: 20px; margin-top: 48px; }
+      .product-layout { grid-template-columns: 1fr; gap: 32px; }
+      .gallery { position: static; }
+      .desc-grid { grid-template-columns: 1fr; gap: 28px; }
+      .desc-body { padding: 28px 24px; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0 20px; }
+      .header-logo img { height: 36px; }
+      .cart-drawer { width: 100vw; }
+      .qty-row { flex-direction: column; align-items: stretch; }
+      .qty-control { justify-content: center; }
+      .btn-add-cart { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CART DRAWER (idéntico al del sitio principal) ===== -->
+  <aside class="cart-drawer" id="cartDrawer" role="complementary" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <h2>Tu Carrito</h2>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Tu carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-totals">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" aria-label="Finalizar compra vía WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+        </svg>
+        Finalizar por WhatsApp
+      </button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <a href="../index.html" class="back-btn" aria-label="Volver al inicio">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Volver
+    </a>
+    <a href="../index.html" class="header-logo" aria-label="FB Fernández Bellini">
+      <img src="../fblogo.png" alt="FB Fernández Bellini" />
+    </a>
+    <!-- Ícono carrito igual al del sitio principal -->
+    <button class="cart-btn" id="cartBtn" aria-label="Ver carrito de compras">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+    </button>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <div class="product-page">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Navegación">
+        <a href="../index.html">Inicio</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="index.html#carteras">Carteras</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        <!-- ▼ Cambiá Cartera Camel ▼ -->
+        <span>Cartera Camel</span>
+      </nav>
+
+      <div class="product-layout">
+
+        <!-- ===== GALERÍA ===== -->
+        <div class="gallery">
+          <div class="gallery-main" id="galleryMain" title="Click para hacer zoom">
+            <!-- ▼ Cambiá imagen1.jpg ▼ -->
+            <img src="../cartera1.jpeg" alt="Cartera Camel" id="mainImg" />
+            <span class="zoom-hint">+ Zoom</span>
+          </div>
+          <div class="gallery-thumbs">
+            <!-- ▼ Cambiá imagen1.jpg e imagen2.jpg ▼ -->
+            <div class="thumb active" data-idx="0">
+              <img src="../cartera1.jpeg" alt="Cartera Camel vista 1" />
+            </div>
+            <div class="thumb" data-idx="1">
+              <img src="../camel.jpg" alt="Cartera Camel vista 2" />
+            </div>
+            <div class="thumb" data-idx="1">
+              <img src="../camel2.jpg" alt="Cartera Camel vista 3" />
+            </div>
+          </div>
+          <div class="gallery-nav">
+            <button class="gallery-arrow" id="prevImg" aria-label="Imagen anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="gallery-dots">
+              <div class="gallery-dot active"></div>
+              <div class="gallery-dot"></div>
+            </div>
+            <button class="gallery-arrow" id="nextImg" aria-label="Imagen siguiente">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== INFO ===== -->
+        <div class="product-info">
+          <!-- ▼ Cambiá Cartera Camel ▼ -->
+          <h1 class="product-name">Cartera Camel</h1>
+
+          <!-- ▼ Cambiá $PRECIO. Para oferta: agregá <span class="price-original">$PRECIO_ORIGINAL</span> ▼ -->
+          <p class="product-price">$40.000</p> 
+          <p class="price-note">Precio expresado en pesos argentinos</p>
+
+          <div class="divider"></div>
+
+          <div class="qty-row">
+            <div class="qty-control">
+              <button class="qty-btn-product" id="qtyMinus" aria-label="Reducir">−</button>
+              <span class="qty-num-product" id="qtyNum">1</span>
+              <button class="qty-btn-product" id="qtyPlus" aria-label="Aumentar">+</button>
+            </div>
+            <button class="btn-add-cart" id="addToCartBtn" aria-label="Agregar al carrito">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              Agregar al carrito
+            </button>
+          </div>
+
+          <button class="btn-whatsapp" id="whatsappBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+            </svg>
+            Consultar por WhatsApp
+          </button>
+
+          <div class="divider"></div>
+
+          <div class="product-meta">
+           
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== DESCRIPCIÓN ===== -->
+    <div class="description-section">
+      <div class="desc-tabs">
+        <div class="desc-tab active">Descripción</div>
+      </div>
+      <div class="desc-body">
+        <!-- ▼ Cambiá Cartera Camel ▼ -->
+        <h3 class="desc-title">Cartera Camel</h3>
+        <div class="desc-grid">
+          <div class="desc-features">
+            <!-- ▼ Editá las características del producto ▼ -->
+            <div class="desc-feature">Bolso con broche imantado interno.</div>
+            <div class="desc-feature">Sin bolsillo.</div>
+            <div class="desc-feature">Herraje plateado.</div>
+            <div class="desc-feature">Material simil cuero negro.</div>
+          </div>
+          <div>
+            <div class="desc-measures">
+              <h4>Medidas</h4>
+              <!-- ▼ Editá las medidas ▼ -->
+              <div class="measure-row">
+                <span class="measure-label">Ancho</span>
+                <span class="measure-value">38 cm</span>
+              </div>
+              <div class="measure-row">
+                <span class="measure-label">Alto</span>
+                <span class="measure-value">57 cm</span>
+              </div>
+              <div class="measure-row">
+                <span class="measure-label">Profundidad</span>
+                <span class="measure-value">30 cm</span>
+              </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    'use strict';
+
+    // ============================================================
+    //  ▼▼▼ SOLO CAMBIÁ ESTA SECCIÓN PARA CADA PRODUCTO ▼▼▼
+    // ============================================================
+    const PRODUCT = {
+        id:    6, 
+      name:  'Cartera Camel',   // ← nombre del producto
+      price: 80000,               // ← precio (número, sin puntos ni $)
+      image: '../cartera1.jpeg'        // ← imagen principal (para el carrito)
+    };
+    // Imágenes del carrusel (podés tener 2, 3 o más)
+    const GALLERY_IMAGES = ['../cartera1.jpeg', '../camel.jpg', '../camel2.jpg']; // ← cambiá
+    // ============================================================
+
+    /* =================== GALERÍA =================== */
+    let currentImg = 0;
+    const mainImg     = document.getElementById('mainImg');
+    const galleryMain = document.getElementById('galleryMain');
+    const thumbEls    = document.querySelectorAll('.thumb');
+    const dotEls      = document.querySelectorAll('.gallery-dot');
+
+    function goToImg(idx) {
+      currentImg = (idx + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
+      mainImg.src = GALLERY_IMAGES[currentImg];
+      thumbEls.forEach((t, i) => t.classList.toggle('active', i === currentImg));
+      dotEls.forEach((d, i)   => d.classList.toggle('active', i === currentImg));
+      galleryMain.classList.remove('zoomed');
+    }
+
+    document.getElementById('prevImg').addEventListener('click', () => goToImg(currentImg - 1));
+    document.getElementById('nextImg').addEventListener('click', () => goToImg(currentImg + 1));
+    thumbEls.forEach((th, i) => th.addEventListener('click', () => goToImg(i)));
+
+    // Zoom con seguimiento del cursor
+    galleryMain.addEventListener('click', (e) => {
+      if (galleryMain.classList.contains('zoomed')) {
+        galleryMain.classList.remove('zoomed');
+        mainImg.style.transformOrigin = 'center center';
+      } else {
+        const rect = galleryMain.getBoundingClientRect();
+        const xPct = ((e.clientX - rect.left) / rect.width)  * 100;
+        const yPct = ((e.clientY - rect.top)  / rect.height) * 100;
+        mainImg.style.transformOrigin = `${xPct}% ${yPct}%`;
+        galleryMain.classList.add('zoomed');
+      }
+    });
+
+    /* =================== CANTIDAD =================== */
+    let qty = 1;
+    const qtyNumEl = document.getElementById('qtyNum');
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      if (qty > 1) { qty--; qtyNumEl.textContent = qty; }
+    });
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      qty++; qtyNumEl.textContent = qty;
+    });
+
+    /* =================== CARRITO (comparte localStorage con index.html) =================== */
+    const formatPrice = (n) => '$' + n.toLocaleString('es-AR', { minimumFractionDigits: 0 });
+
+    function loadCart() {
+      return JSON.parse(localStorage.getItem('fbfb_cart') || '[]');
+    }
+    function saveCart(cart) {
+      localStorage.setItem('fbfb_cart', JSON.stringify(cart));
+    }
+    function getCartTotal(cart) {
+      return cart.reduce((s, i) => s + i.qty, 0);
+    }
+    function getCartSubtotal(cart) {
+      return cart.reduce((s, i) => s + i.price * i.qty, 0);
+    }
+
+    function updateCartCount() {
+      const total = getCartTotal(loadCart());
+      const countEl = document.getElementById('cartCount');
+      countEl.textContent = total;
+      countEl.classList.toggle('visible', total > 0);
+    }
+
+    function renderCart() {
+      const cart = loadCart();
+      const cartItemsEl  = document.getElementById('cartItems');
+      const subtotalEl   = document.getElementById('cartSubtotal');
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p class="cart-empty">Tu carrito está vacío</p>';
+        subtotalEl.textContent = '$0';
+        return;
+      }
+
+      subtotalEl.textContent = formatPrice(getCartSubtotal(cart));
+      cartItemsEl.innerHTML = '';
+
+      cart.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+        <img src="../${item.image.replace(/^(\.\.\/)+/, '')}" alt="${item.alt || item.name}" loading="lazy" />
+          <div class="cart-item-info">
+            <p class="cart-item-name">${item.name}</p>
+            <p class="cart-item-price">${formatPrice(item.price)}</p>
+            <div class="cart-item-qty">
+              <button class="qty-btn-cart" data-key="${item.key}" data-delta="-1" aria-label="Reducir">−</button>
+              <span class="qty-num-cart">${item.qty}</span>
+              <button class="qty-btn-cart" data-key="${item.key}" data-delta="1" aria-label="Aumentar">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove" data-key="${item.key}" aria-label="Eliminar">×</button>
+        `;
+        cartItemsEl.appendChild(el);
+      });
+
+      cartItemsEl.querySelectorAll('.qty-btn-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cart = loadCart();
+          const item = cart.find(i => i.key === btn.dataset.key);
+          if (item) {
+            item.qty = Math.max(1, item.qty + parseInt(btn.dataset.delta));
+            saveCart(cart);
+            renderCart();
+            updateCartCount();
+          }
+        });
+      });
+      cartItemsEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cart = loadCart().filter(i => i.key !== btn.dataset.key);
+          saveCart(cart);
+          renderCart();
+          updateCartCount();
+        });
+      });
+    }
+
+    function openCart() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCart() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Botón carrito en header
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+    // Agregar al carrito desde esta página
+    document.getElementById('addToCartBtn').addEventListener('click', (e) => {
+      const btn = e.currentTarget;
+      const cart = loadCart();
+     const key = `${PRODUCT.id}`;
+      const existing = cart.find(i => i.key === key);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ key, id: key, name: PRODUCT.name, price: PRODUCT.price, image: PRODUCT.image, alt: PRODUCT.name, qty });
+      }
+      saveCart(cart);
+      renderCart();
+      updateCartCount();
+      openCart();
+      showToast(`"${PRODUCT.name}" agregada al carrito`);
+
+      btn.textContent = '✓ Agregado';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> Agregar al carrito`;
+        btn.classList.remove('added');
+      }, 2000);
+    });
+
+    // Checkout WhatsApp
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      const cart = loadCart();
+      if (cart.length === 0) { showToast('Tu carrito está vacío'); return; }
+      const lines = cart.map(i => `• ${i.name} x${i.qty} — ${formatPrice(i.price * i.qty)}`);
+      const total = getCartSubtotal(cart);
+      const msg = encodeURIComponent([
+        '¡Hola! Me gustaría hacer el siguiente pedido:', '',
+        ...lines, '',
+        `*Total: ${formatPrice(total)}*`, '',
+        '¿Pueden confirmarme disponibilidad y formas de pago? ¡Gracias! 😊'
+      ].join('\n'));
+      window.open(`https://wa.me/5491144036133?text=${msg}`, '_blank', 'noopener,noreferrer');
+    });
+
+    // Botón WhatsApp consulta directa
+    document.getElementById('whatsappBtn').addEventListener('click', () => {
+      const msg = encodeURIComponent(
+        `¡Hola! Quisiera consultar por la *${PRODUCT.name}* (${formatPrice(PRODUCT.price)}).\n¿Tienen disponibilidad? ¡Gracias! 😊`
+      );
+      window.open(`https://wa.me/5491144036133?text=${msg}`, '_blank', 'noopener,noreferrer');
+    });
+
+    // Escape cierra carrito
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCart();
+    });
+
+    /* =================== TOAST =================== */
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    /* =================== HEADER SCROLL =================== */
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* =================== INIT =================== */
+    renderCart();
+    updateCartCount();
+  </script>
+</body>
+</html>

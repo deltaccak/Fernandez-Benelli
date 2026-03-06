@@ -1040,7 +1040,7 @@ em { font-style: italic; }
   align-items:center;
   justify-content:center;
   cursor:pointer;
-  transition:0.2s;
+
 }
 
 .dev-credit-btn:hover{
@@ -1059,8 +1059,8 @@ em { font-style: italic; }
   text-align:center;
   opacity:0;
   pointer-events:none;
-  transform:translateY(10px);
-  transition:0.25s;
+
+
 }
 
 .dev-credit-box a{
@@ -1092,7 +1092,7 @@ em { font-style: italic; }
 ::-webkit-scrollbar-thumb{
   background:#c8a892; /* marrón clarito */
   border-radius:10px;
-  transition:0.3s;
+
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -1104,7 +1104,7 @@ em { font-style: italic; }
 
 /* Firefox */
 *{
-  scrollbar-width: thin;
+  scrollbar-width: medium;
   scrollbar-color: #c8a892 #f3eee8;
 }
 

@@ -15,7 +15,7 @@ const FEATURED_PRODUCTS = [
     alt: 'Cartera Manhatann artesanal premium',
     badge: 'Destacado',
     outOfStock: false,
-    url: 'productos/5.html'
+    url: 'productos/cartera-manhattan.html'
   },
   {
     id: 102,
@@ -26,7 +26,7 @@ const FEATURED_PRODUCTS = [
     alt: 'Cartera Camel diseño clásico premium',
     badge: null,
     outOfStock: false,
-    url: 'productos/6.html'
+    url: 'productos/cartera-camel.html'
   },
 
   {
@@ -38,7 +38,7 @@ const FEATURED_PRODUCTS = [
     alt: 'Porta cosméticos artesanal femenino',
     badge: 'Nuevo',
     outOfStock: false,
-    url: 'productos/8.html'
+    url: 'productos/portacosmeticos-cuadros.html'
   }
 ];
 
@@ -53,7 +53,7 @@ const PRODUCTS = [
   alt: 'Cartera Espresso en oferta',
   badge: 'Oferta',
   outOfStock: false,
-  url: 'productos/1.html'
+  url: 'productos/cartera-espresso.html'
 },
 {
   id: 2,
@@ -64,7 +64,7 @@ const PRODUCTS = [
   alt: 'Cartera Maison en oferta',
   badge: 'Oferta',
   outOfStock: true,
-  url: 'productos/2.html'
+  url: 'productos/cartera-maison.html'
 },
 {
   id: 3,
@@ -75,7 +75,7 @@ const PRODUCTS = [
   alt: 'Cartera Isa artesanal',
   badge: null,
   outOfStock: true,
-  url: 'productos/3.html'
+  url: 'productos/cartera-isa.html'
 },
 {
   id: 4,
@@ -86,7 +86,7 @@ const PRODUCTS = [
   alt: 'Cartera Clio premium',
   badge: null,
   outOfStock: false,
-  url: 'productos/4.html'
+  url: 'productos/cartera-clio.html'
 },
 {
   id: 5,
@@ -97,7 +97,7 @@ const PRODUCTS = [
   alt: 'Cartera Manhatann artesanal premium',
   badge: 'Destacado',
   outOfStock: false,
-  url: 'productos/5.html'
+  url: 'productos/cartera-manhattan.html'
 },
 {
   id: 6,
@@ -108,7 +108,7 @@ const PRODUCTS = [
   alt: 'Cartera Camel diseño clásico premium',
   badge: null,
   outOfStock: false,
-  url: 'productos/6.html'
+  url: 'productos/cartera-camel.html'
 },
 {
   id: 7,
@@ -119,7 +119,7 @@ const PRODUCTS = [
   alt: 'Cartera Caliet de diseño artesanal',
   badge: null,
   outOfStock: true,
-  url: 'productos/7.html'
+  url: 'productos/cartera-caliet.html'
 },
 {
   id: 8,
@@ -130,7 +130,7 @@ const PRODUCTS = [
   alt: 'Porta cosméticos artesanal femenino',
   badge: 'Nuevo',
   outOfStock: false,
-  url: 'productos/8.html'
+  url: 'productos/portacosmeticos-cuadros.html'
 },
 {
   id: 9,
@@ -141,7 +141,7 @@ const PRODUCTS = [
   alt: 'Porta cosméticos artesanal variante 2',
   badge: 'Nuevo',
   outOfStock: false,
-  url: 'productos/9.html'
+  url: 'productos/portacosmeticos-croco.html'
 }
 ];
 
