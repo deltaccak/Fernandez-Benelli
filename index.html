@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>FB Fernández Bellini | Carteras de Mujer Artesanales y Elegantes</title>
+  <meta name="description" content="Descubrí nuestra colección exclusiva de carteras de mujer artesanales. Diseños únicos, materiales premium y estilo boutique. Envíos a todo el país." />
+  <meta name="keywords" content="carteras de mujer, carteras elegantes, carteras artesanales, carteras de diseño, carteras boutique, accesorios femeninos, carteras Argentina" />
+  <meta name="author" content="FB Fernández Bellini" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://fbfernandezbellini.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FB Fernández Bellini | Carteras Artesanales de Diseño" />
+  <meta property="og:description" content="Colección exclusiva de carteras de mujer. Diseño artesanal, calidad premium." />
+  <meta property="og:image" content="banner.webp" />
+  <meta property="og:url" content="https://fbfernandezbellini.com/" />
+  <meta property="og:site_name" content="FB Fernández Bellini" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FB Fernández Bellini | Carteras de Diseño" />
+  <meta name="twitter:description" content="Carteras artesanales exclusivas para la mujer moderna." />
+  <meta name="twitter:image" content="banner.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="fblogo.png" />
+  <link rel="apple-touch-icon" href="fblogo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== SIDE MENU OVERLAY ===== -->
+  <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <nav class="side-menu" id="sideMenu">
+      <button class="menu-close" id="menuClose" aria-label="Cerrar menú">&times;</button>
+      <div class="menu-logo">
+        <img src="fblogo.png" alt="FB Fernández Bellini logo" />
+      </div>
+      <ul class="menu-links">
+        <li><a href="#inicio" class="menu-link" data-section="inicio">Inicio</a></li>
+        <li><a href="#carteras" class="menu-link" data-section="carteras">Carteras</a></li>
+         <li><a href="faq.html" class="menu-link" data-section="faq">Sobre Nosotros</a></li>
+        <li><a href="tos.html" class="menu-link" data-section="terminos">Términos y Condiciones</a></li>
+       
+      </ul>
+      <div class="menu-social">
+        <a href="https://www.instagram.com/fbfernandezbellini/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de FB Fernández Bellini">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @fbfernandezbellini
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header" role="banner">
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#inicio" class="header-logo" aria-label="FB Fernández Bellini - Inicio">
+      <img src="fblogo.png" alt="FB Fernández Bellini" />
+    </a>
+    <button class="cart-btn" id="cartBtn" aria-label="Ver carrito de compras">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+    </button>
+  </header>
+
+  <!-- ===== CART DRAWER ===== -->
+  <aside class="cart-drawer" id="cartDrawer" role="complementary" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <h2>Tu Carrito</h2>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Tu carrito está vacío</p>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-totals">
+        <span>Subtotal</span><span id="cartSubtotal">$0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" aria-label="Finalizar compra vía WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+        </svg>
+        Finalizar por WhatsApp
+      </button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- INICIO SECTION -->
+    <section id="inicio" class="section-inicio" aria-label="Inicio">
+
+      <!-- Hero Banners -->
+      <div class="hero-slider" role="region" aria-label="Banners principales">
+        <div class="hero-slide active">
+          <img src="carteras.jpg" alt="Nueva colección de carteras artesanales FB Fernández Bellini" loading="eager" />
+          <div class="hero-content">
+            <p class="hero-tag">Nueva Colección</p>
+            <h1>Arte en cada<br/><em>detalle</em></h1>
+            <a href="#carteras" class="btn-hero">Explorar Carteras</a>
+          </div>
+        </div>
+        <div class="hero-slide">
+          <img src="bannn.jpg" alt="Carteras de diseño elegante y artesanal" loading="lazy" />
+          <div class="hero-content">
+            <p class="hero-tag">Diseño Exclusivo</p>
+            <h1>Hecho con<br/><em>pasión</em></h1>
+            <a href="#carteras" class="btn-hero">Ver Colección</a>
+          </div>
+        </div>
+        <div class="hero-controls">
+          <button class="hero-dot active" data-slide="0" aria-label="Ir al banner 1"></button>
+          <button class="hero-dot" data-slide="1" aria-label="Ir al banner 2"></button>
+        </div>
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="cta-banner reveal">
+        <div class="cta-inner">
+          <p class="cta-sub">Diseño exclusivo · Calidad premium</p>
+          <h2>Cada cartera cuenta una historia</h2>
+          <a href="#carteras" class="btn-primary">Ver Carteras</a>
+        </div>
+      </div>
+
+      <!-- Featured Products -->
+      <div class="featured-section reveal">
+        <div class="section-header">
+          <p class="section-tag">Selección especial</p>
+          <h2>Productos Destacados</h2>
+        </div>
+        <div class="products-grid" id="featuredGrid" role="list" aria-label="Productos destacados">
+          <!-- JS rendered -->
+        </div>
+        <div class="section-footer">
+          <a href="#carteras" class="btn-outline">Ver todos los productos</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CARTERAS SECTION -->
+    <section id="carteras" class="section-carteras" aria-label="Carteras">
+      <div class="section-header reveal">
+        <p class="section-tag">Colección completa</p>
+        <h2>Nuestras Carteras</h2>
+        <p class="section-desc">Cada pieza es única, diseñada con amor y confeccionada con los mejores materiales.</p>
+      </div>
+      <div class="products-grid reveal" id="carterasGrid" role="list" aria-label="Todas las carteras">
+        <!-- JS rendered -->
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="fblogo.png" alt="FB Fernández Bellini" class="footer-logo" />
+        <p>Carteras de diseño exclusivo.<br/>Hechas con amor, para vos.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#carteras">Carteras</a></li>
+          <li><a href="#terminos">Términos y Condiciones</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <a href="https://www.instagram.com/fbfernandezbellini/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @fbfernandezbellini
+        </a>
+        <a href="https://wa.me/5491144036133" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+          </svg>
+          WhatsApp
+        </a>
+
+<a href="mailto:fbfernandezbellini@gmail.com" class="footer-social" aria-label="Email">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <path d="M2 6l10 7 10-7"/>
+  </svg>
+  fbfernandezbellini@gmail.com
+</a>
+
+
+
+
+      </div>
+    </div>
+<div class="footer-bottom">
+  <p>&copy; <span id="year"></span> FB Fernández Bellini. Todos los derechos reservados.</p>
+
+<div class="dev-credit-container">
+  <button class="dev-credit-btn" onclick="toggleDevInfo()">i</button>
+
+  <div class="dev-credit-box" id="devCreditBox">
+    <p>by: <strong>Facundo</strong></p>
+    <a href="https://instagram.com/faaacualvarez" target="_blank">
+      instagram.com/faacualvarez
+    </a>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Quiénes Somos | FB Fernández Bellini</title>
+  <meta name="description" content="Conocé la historia y los valores detrás de FB Fernández Bellini. Carteras artesanales de diseño para la mujer moderna." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://fbfernandezbellini.com/nosotros.html" />
+
+  <link rel="icon" type="image/png" href="fblogo.png" />
+  <link rel="apple-touch-icon" href="fblogo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== NOSOTROS PAGE ===== */
+
+    /* --- Hero --- */
+    .nosotros-hero {
+      margin-top: var(--header-h);
+      position: relative;
+      background: var(--charcoal);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+
+    .nosotros-hero::after {
+      content: 'FB';
+      position: absolute;
+      right: -0.05em;
+      bottom: -0.15em;
+      font-family: var(--ff-display);
+      font-size: 28vw;
+      font-weight: 600;
+      color: rgba(250,248,245,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-text-col {
+      padding: 80px 70px 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text-col .hero-tag {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 20px;
+      display: block;
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .hero-text-col h1 {
+      font-family: var(--ff-display);
+      color: var(--ivory);
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+
+    .hero-text-col p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(250,248,245,0.5);
+      line-height: 1.85;
+      max-width: 380px;
+    }
+
+    .hero-deco-col {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-deco-col::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,154,0.18) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-deco-pattern {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      gap: 0;
+      opacity: 0.06;
+    }
+
+    .hero-deco-pattern span {
+      border: 0.5px solid var(--rose);
+    }
+
+    .hero-deco-col .accent-line {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .accent-quote {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: rgba(250,248,245,0.18);
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* --- Valores Strip --- */
+    .valores-strip {
+      background: var(--ivory-dark);
+      border-bottom: 1px solid var(--cream);
+      padding: 0 60px;
+    }
+
+    .valores-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .valor-item {
+      padding: 48px 40px 44px;
+      text-align: center;
+      border-right: 1px solid var(--cream);
+      transition: background var(--transition);
+    }
+
+    .valor-item:last-child { border-right: none; }
+
+    .valor-item:hover { background: var(--white); }
+
+    .valor-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 18px;
+      color: var(--rose);
+    }
+
+    .valor-title {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .valor-desc {
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.75;
+    }
+
+    /* --- Historia Section --- */
+    .section-historia {
+      padding: 110px 60px;
+      background: var(--ivory);
+    }
+
+    .historia-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .historia-text .section-tag { margin-bottom: 12px; }
+
+    .historia-text h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 32px;
+      line-height: 1.12;
+    }
+
+    .historia-text p {
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: var(--charcoal-md);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .historia-text p:last-of-type { margin-bottom: 32px; }
+
+    .historia-firma {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--rose-dark);
+      letter-spacing: 0.02em;
+    }
+
+    .historia-visual {
+      position: relative;
+    }
+
+    .historia-card {
+      background: var(--charcoal);
+      padding: 56px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .historia-card::before {
+      content: '"';
+      position: absolute;
+      top: -0.1em;
+      left: 0.1em;
+      font-family: var(--ff-display);
+      font-size: 14rem;
+      color: rgba(201,169,154,0.07);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .historia-card-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .historia-card blockquote {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      color: var(--ivory);
+      line-height: 1.5;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 28px;
+    }
+
+    .historia-card-footer {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(250,248,245,0.4);
+    }
+
+    .historia-deco-box {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border: 1px solid var(--rose);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    /* --- FAQ Section --- */
+    .section-faq {
+      background: var(--ivory-dark);
+      padding: 110px 60px;
+    }
+
+    .faq-container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .faq-header h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--charcoal);
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
+    .faq-header p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+    }
+
+    /* Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--cream);
+      background: transparent;
+      transition: background var(--transition);
+    }
+
+    .faq-item:first-child { border-top: 1px solid var(--cream); }
+
+    .faq-item.open { background: var(--white); }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 26px 0;
+      text-align: left;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .faq-question:hover .faq-q-text { color: var(--rose-dark); }
+
+    .faq-q-num {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--rose);
+      opacity: 0.6;
+      min-width: 28px;
+    }
+
+    .faq-q-text {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      flex: 1;
+      transition: color var(--transition);
+      line-height: 1.3;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--cream);
+      background: var(--ivory);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .faq-icon svg {
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      color: var(--charcoal-md);
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+    }
+
+    .faq-item.open .faq-icon svg {
+      transform: rotate(45deg);
+      color: var(--ivory);
+    }
+
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.42s cubic-bezier(0.4,0,0.2,1), padding 0.35s ease;
+      padding: 0 0 0 28px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 0 28px 28px;
+    }
+
+    .faq-answer p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--charcoal-md);
+      line-height: 1.85;
+    }
+
+    /* --- CTA Final --- */
+    .nosotros-cta {
+      background: var(--charcoal);
+      padding: 100px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nosotros-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 60%, rgba(201,169,154,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .nosotros-cta .cta-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 18px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nosotros-cta h2 {
+      font-family: var(--ff-display);
+      color: var(--ivory);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nosotros-cta p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(250,248,245,0.5);
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nosotros-cta .btn-primary {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .nosotros-hero { grid-template-columns: 1fr; }
+      .hero-deco-col { display: none; }
+
+      .historia-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+      }
+
+      .valores-inner { grid-template-columns: 1fr; }
+      .valor-item { border-right: none; border-bottom: 1px solid var(--cream); }
+      .valor-item:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-text-col { padding: 60px 24px; }
+
+      .valores-strip { padding: 0 24px; }
+
+      .section-historia,
+      .section-faq,
+      .nosotros-cta { padding: 70px 24px; }
+
+      .historia-card { padding: 40px 28px; }
+
+      .faq-q-text { font-size: 1.08rem; }
+
+      .faq-item.open .faq-answer { padding: 0 0 22px 0; }
+      .faq-answer { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SIDE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <nav class="side-menu" id="sideMenu">
+      <button class="menu-close" id="menuClose" aria-label="Cerrar menú">&times;</button>
+      <div class="menu-logo">
+        <img src="fblogo.png" href="index.html" alt="FB Fernández Bellini logo" />
+      </div>
+      <ul class="menu-links">
+        <li><a href="index.html" class="menu-link">Inicio</a></li>
+        <li><a href="index.html#carteras" class="menu-link">Carteras</a></li>
+        <li><a href="faq.html" class="menu-link" style="color:var(--rose-dark)">Sobre Nosotros</a></li>
+        <li><a href="tos.html" class="menu-link">Términos y Condiciones</a></li>
+      </ul>
+      <div class="menu-social">
+        <a href="https://www.instagram.com/fbfernandezbellini/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @fbfernandezbellini
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header" role="banner">
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="header-logo" aria-label="FB Fernández Bellini - Inicio">
+      <img src="fblogo.png" alt="FB Fernández Bellini" />
+    </a>
+    <button class="cart-btn" id="cartBtn" aria-label="Ver carrito de compras">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+    </button>
+  </header>
+
+  <!-- ===== CART DRAWER ===== -->
+  <aside class="cart-drawer" id="cartDrawer" role="complementary" aria-label="Carrito de compras">
+    <div class="cart-header">
+      <h2>Tu Carrito</h2>
+      <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Tu carrito está vacío</p>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-totals">
+        <span>Subtotal</span><span id="cartSubtotal">$0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" aria-label="Finalizar compra vía WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+        </svg>
+        Finalizar por WhatsApp
+      </button>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- Hero -->
+    <div class="nosotros-hero">
+      <div class="hero-text-col">
+        <span class="hero-tag">Nuestra historia</span>
+        <h1>Quiénes<br/><em>Somos</em></h1>
+        <p>Una marca que nace con la idea de crear carteras modernas, versátiles y de diseño, pensadas para acompañarte en tu día a día.</p>
+      </div>
+      <div class="hero-deco-col" aria-hidden="true">
+        <div class="hero-deco-pattern">
+          <!-- 48 celdas decorativas -->
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="accent-line">
+          <p class="accent-quote">Estilo · Personalidad · Seguridad</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Valores Strip -->
+    <div class="valores-strip reveal">
+      <div class="valores-inner">
+        <div class="valor-item">
+          <div class="valor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <p class="valor-title">Hecho con amor</p>
+          <p class="valor-desc">Cada pieza es seleccionada y desarrollada con atención en cada detalle.</p>
+        </div>
+        <div class="valor-item">
+          <div class="valor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <p class="valor-title">Diseño versátil</p>
+          <p class="valor-desc">Piezas que se adaptan a diferentes momentos: lo cotidiano y las ocasiones especiales.</p>
+        </div>
+        <div class="valor-item">
+          <div class="valor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <p class="valor-title">Calidad garantizada</p>
+          <p class="valor-desc">Materiales y terminaciones que te hacen sentir segura y auténtica.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historia -->
+    <section class="section-historia" id="nosotros">
+      <div class="historia-grid">
+
+        <div class="historia-text reveal">
+          <p class="section-tag">Nuestra esencia</p>
+          <h2>Una marca para la<br/><em>mujer de hoy</em></h2>
+          <p>En FB Fernández Bellini creemos que los accesorios no son solo un complemento, sino una forma de expresar estilo, personalidad y seguridad.</p>
+          <p>Nos inspira la mujer actual: activa, independiente y con un estilo propio. Por eso diseñamos piezas que puedan adaptarse a diferentes momentos, desde lo cotidiano hasta ocasiones especiales.</p>
+          <p>Trabajamos con dedicación para ofrecer productos que no solo se vean bien, sino que también te hagan sentir segura y auténtica cuando los llevás.</p>
+          <span class="historia-firma">Gracias por acompañarnos.</span>
+        </div>
+
+        <div class="historia-visual reveal">
+          <div class="historia-card">
+            <span class="historia-card-tag">Nuestra filosofía</span>
+            <blockquote>
+              "Cada modelo es elegido con atención en los detalles, buscando combinar estética, funcionalidad y calidad."
+            </blockquote>
+            <p class="historia-card-footer">FB Fernández Bellini</p>
+            <div class="historia-deco-box" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-faq" id="faq">
+      <div class="faq-container">
+
+        <div class="faq-header reveal">
+          <p class="section-tag">Todo lo que necesitás saber</p>
+          <h2>Preguntas frecuentes</h2>
+          <p>Respondemos las dudas más comunes para que tu experiencia sea simple y sin sorpresas.</p>
+        </div>
+
+        <div class="faq-list reveal" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-num">01</span>
+              <span class="faq-q-text">¿Cómo compro?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <p>Elegís el producto que te gusta, lo agregás al carrito y seguís los pasos para finalizar la compra. Al confirmar, nos contactamos por WhatsApp para coordinar el pago y el envío.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-num">02</span>
+              <span class="faq-q-text">¿Qué medios de pago aceptan?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <p>Aceptamos transferencia bancaria y Mercado Pago. El pedido se confirma una vez acreditado el pago.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-num">03</span>
+              <span class="faq-q-text">¿Hacen envíos?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <p>Sí, realizamos envíos a todo el país a través de correo o mensajería. Una vez despachado el pedido, te enviamos el número de seguimiento para que puedas rastrearlo.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-num">04</span>
+              <span class="faq-q-text">¿Cuánto tarda el envío?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <p>Despachamos dentro de 2 a 5 días hábiles luego de acreditado el pago. Los tiempos de entrega dependen del correo y la zona de destino.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-num">05</span>
+              <span class="faq-q-text">¿Puedo cambiar un producto?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <p>Sí, dentro de los 10 días de recibido el producto, siempre que esté sin uso, en perfectas condiciones y con su packaging original. Para gestionarlo escribinos por WhatsApp o Instagram.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="nosotros-cta reveal">
+      <span class="cta-tag">Colección disponible</span>
+      <h2>Explorá nuestras carteras</h2>
+      <p>Encontrá la pieza perfecta para vos.</p>
+      <a href="index.html#carteras" class="btn-primary">Ver Colección</a>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="fblogo.png" alt="FB Fernández Bellini" class="footer-logo" />
+        <p>Carteras de diseño exclusivo.<br/>Hechas con amor, para vos.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegación</h4>
+          <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#carteras">Carteras</a></li>
+          <li><a href="faq.html">Sobre Nosotros</a></li>
+          <li><a href="tos.html">Términos y Condiciones</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <a href="https://www.instagram.com/fbfernandezbellini/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @fbfernandezbellini
+        </a>
+        <a href="https://wa.me/5491144036133" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12.002 0C5.373 0 0 5.373 0 12.001c0 2.118.554 4.103 1.522 5.831L.053 23.961l6.266-1.442A11.937 11.937 0 0012.002 24C18.63 24 24 18.627 24 12.001 24 5.373 18.63 0 12.002 0zm0 21.818a9.807 9.807 0 01-5.032-1.382l-.361-.214-3.72.856.894-3.614-.236-.371A9.804 9.804 0 012.181 12c0-5.418 4.403-9.818 9.82-9.818 5.419 0 9.82 4.4 9.82 9.818 0 5.419-4.401 9.818-9.819 9.818z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a href="mailto:fbfernandezbellini@gmail.com" class="footer-social" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 6l10 7 10-7"/>
+          </svg>
+          fbfernandezbellini@gmail.com
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> FB Fernández Bellini. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+
+    /* ===== CART ===== */
+    const formatPrice = (n) => '$' + n.toLocaleString('es-AR', { minimumFractionDigits: 0 });
+    function loadCart() { return JSON.parse(localStorage.getItem('fbfb_cart') || '[]'); }
+    function saveCart(c) { localStorage.setItem('fbfb_cart', JSON.stringify(c)); }
+
+    function updateCartCount() {
+      const total = loadCart().reduce((s, i) => s + i.qty, 0);
+      const el = document.getElementById('cartCount');
+      el.textContent = total;
+      el.classList.toggle('visible', total > 0);
+    }
+
+    function renderCart() {
+      const cart = loadCart();
+      const cartItemsEl = document.getElementById('cartItems');
+      const subtotalEl  = document.getElementById('cartSubtotal');
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = '<p class="cart-empty">Tu carrito está vacío</p>';
+        subtotalEl.textContent = '$0';
+        return;
+      }
+
+      subtotalEl.textContent = formatPrice(cart.reduce((s, i) => s + i.price * i.qty, 0));
+      cartItemsEl.innerHTML = '';
+
+      cart.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+          <img src="${item.image}" alt="${item.alt || item.name}" loading="lazy" />
+          <div class="cart-item-info">
+            <p class="cart-item-name">${item.name}</p>
+            <p class="cart-item-price">${formatPrice(item.price)}</p>
+            <div class="cart-item-qty">
+              <button class="qty-btn" data-key="${item.key}" data-delta="-1" aria-label="Reducir">−</button>
+              <span class="qty-num">${item.qty}</span>
+              <button class="qty-btn" data-key="${item.key}" data-delta="1" aria-label="Aumentar">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove" data-key="${item.key}" aria-label="Eliminar">×</button>
+        `;
+        cartItemsEl.appendChild(el);
+      });
+
+      cartItemsEl.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const c = loadCart();
+          const it = c.find(i => i.key === btn.dataset.key);
+          if (it) { it.qty = Math.max(1, it.qty + parseInt(btn.dataset.delta)); saveCart(c); renderCart(); updateCartCount(); }
+        });
+      });
+      cartItemsEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          saveCart(loadCart().filter(i => i.key !== btn.dataset.key));
+          renderCart(); updateCartCount();
+        });
+      });
+    }
+
+    function openCart()  { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      const cart = loadCart();
+      if (cart.length === 0) { showToast('Tu carrito está vacío'); return; }
+      const lines = cart.map(i => `• ${i.name} x${i.qty} — ${formatPrice(i.price * i.qty)}`);
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const msg = encodeURIComponent(['¡Hola! Me gustaría hacer el siguiente pedido:','', ...lines,'',`*Total: ${formatPrice(total)}*`,'','¿Pueden confirmarme disponibilidad y formas de pago? ¡Gracias! 😊'].join('\n'));
+      window.open(`https://wa.me/5491144036133?text=${msg}`, '_blank', 'noopener,noreferrer');
+    });
+
+    /* ===== MENU ===== */
+    function openMenu()  { document.getElementById('menuOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('hamburger').setAttribute('aria-expanded','true'); }
+    function closeMenu() { document.getElementById('menuOverlay').classList.remove('open'); document.body.style.overflow = ''; document.getElementById('hamburger').setAttribute('aria-expanded','false'); }
+
+    document.getElementById('hamburger').addEventListener('click', openMenu);
+    document.getElementById('menuClose').addEventListener('click', closeMenu);
+    document.getElementById('menuOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('menuOverlay')) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeCart(); } });
+
+    /* ===== FAQ ACCORDION ===== */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Cerrar todos
+        document.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          el.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+        });
+
+        // Abrir el clickeado (si estaba cerrado)
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+
+    /* ===== REVEAL ===== */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ===== HEADER SCROLL ===== */
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ===== TOAST ===== */
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    /* ===== INIT ===== */
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderCart();
+    updateCartCount();
+  </script>
+
+</body>
+</html>
